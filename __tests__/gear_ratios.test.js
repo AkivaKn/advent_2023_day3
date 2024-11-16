@@ -2,8 +2,13 @@ const {
   getNumberLocations,
   checkIfSymbolBetweenIndices,
   calculateTotalPartNumbers,
-} = require("../gear_ratios");
+} = require("../gear_ratios_p1");
 const { fetchInputStr } = require("../data");
+const {
+  getGearLocations,
+  getAdjacentParts,
+  calculateTotalGearRatios,
+} = require("../gear_ratios_p2");
 
 describe("fetchInputStr: returns input file as a string", () => {
   test("Returns a string with a length of 100 when called with example input", () => {
@@ -21,12 +26,12 @@ describe("fetchInputStr: returns input file as a string", () => {
 });
 
 describe("getNumberLocations: Returns an array of regex matches with index keys", () => {
-  test("Returns an array of array of regex matches with the correct values", () => {
+  test("Returns an array of regex matches with the correct values", () => {
     const inputStr = "467..114..";
     const matches = getNumberLocations(inputStr);
     expect(matches.length).toBe(2);
-    expect(matches[0][0]).toBe('467');
-    expect(matches[1].index).toBe(5)
+    expect(matches[0][0]).toBe("467");
+    expect(matches[1].index).toBe(5);
   });
 });
 
@@ -45,6 +50,33 @@ describe("calculateTotalPartNumbers: Returns the parts total when passed an engi
   test("Returns correct total for example input", () => {
     fetchInputStr("example.txt").then((inputStr) => {
       expect(calculateTotalPartNumbers(inputStr)).toBe(4361);
+    });
+  });
+});
+
+describe("getGearLocations: Returns an array of regex matches with index keys", () => {
+  test("Returns an array of regex matches with the correct values", () => {
+    const inputStr = "467.*.114.*.";
+    const matches = getGearLocations(inputStr);
+    expect(matches.length).toBe(2);
+    expect(matches[0][0]).toBe("*");
+    expect(matches[1].index).toBe(10);
+  });
+});
+
+describe("getAdjacentParts: Returns an array of parts adjacent to a given index", () => {
+  test("Returns the correct parts adjacent to the given index", () => {
+    const inputStr = "467.114.*.";
+    const adjacentParts = getAdjacentParts(inputStr, 3);
+    expect(adjacentParts.length).toBe(2);
+    expect(adjacentParts[0]).toBe("467");
+  });
+});
+
+describe("calculateTotalGearRatios: Returns the parts total when passed an engine schematic string", () => {
+  test("Returns correct total for example input", () => {
+    fetchInputStr("example.txt").then((inputStr) => {
+      expect(calculateTotalGearRatios(inputStr)).toBe(467835);
     });
   });
 });

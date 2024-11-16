@@ -19,7 +19,6 @@ exports.checkIfSymbolBetweenIndices = (str, startIndex, endIndex) => {
 
 exports.calculateTotalPartNumbers = (engineSchematic) => {
   let totalPartNumbers = 0;
-  let partNumbers = [];
   const engineRows = engineSchematic.split("\n");
 
   engineRows.forEach((row, index) => {
@@ -43,7 +42,6 @@ exports.calculateTotalPartNumbers = (engineSchematic) => {
         )
       ) {
         totalPartNumbers += Number(number[0]);
-        partNumbers.push(number[0]);
       }
     });
   });

@@ -4,7 +4,8 @@
 
 ## Challenge Description
 
-The challenge involves identifying and totalling all numeric "part numbers" in a 2d "engine schematic" that are adjacent (horizontally, vertically, or diagonally) to any symbols except for a period. Numbers not adjacent to symbols are excluded from the total.
+Part 1 of the challenge involves identifying and totalling all numeric "part numbers" in a 2d "engine schematic" that are adjacent (horizontally, vertically, or diagonally) to any symbols except for a period. Numbers not adjacent to symbols are excluded from the total.
+Part 2 involves calculating the total gear ratios in an "engine schematic". A gear ratio is the multiplication of 2 numbers adjacent to a *. Only gears that have exactly two part numbers adjacent are included.
 
 ## Technologies used
 
@@ -33,11 +34,17 @@ Run tests
 npm test
 ```
 
-Run the app
+Run part 1
 
 ```bash
-node gear_ratios.js
+node gear_ratios_p1.js
 ```
 
-The result will be displayed in your terminal. To test with another input save the input in a .txt file and amend the file name accordingly in gear_ratios.js line 54.
+Run part 2
+
+```bash
+node gear_ratios_p2.js
+```
+
+The result will be displayed in your terminal. To test with another input save the input in a .txt file and amend the file name accordingly in gear_ratios_p1.js line 52 and gear_ratios_p2.js line 56.
 
